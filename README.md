@@ -15,6 +15,7 @@ This system is built around three specialized agents (chat modes):
   * **🧑‍🔬 The Researcher:** The information gatherer. Its job is to explore the codebase, search external documentation, and synthesize all relevant information into a foundational `RESEARCH.md` document.
   * **📝 The Planner:** The strategist. It takes the curated research and, through a collaborative process with the user, breaks it down into a high-level `PLAN.md` and a series of discrete, actionable tasks.
   * **🛠️ The Implementer:** The executor. A "worker bee" that takes a single task file and executes the instructions precisely as written, without deviation.
+  * **🧑‍🏫 The Instructor:** The meta-agent. Its purpose is to help you create new behavioral rules for the other agents, formalizing them into `.instructions.md` files.
 
 -----
 
@@ -69,9 +70,26 @@ With the research complete, switch to the **📝 Planner** (`@workspace #plan`).
 
 Now, switch to the **🛠️ Implementer** (`@workspace #implement`). Assign a single task using the `/implement-prompt` command and provide the path to a task file (e.g., `/tmp/TASK_01_description.md`). The agent will confirm its understanding before proceeding. After executing the task, it will use the `/report-status` command to inform you of its success or failure.
 
-### 4\. Handling Problems and Sessions
+-----
+
+## Guiding Agent Behavior with the Instructor
+
+Over time, you may notice patterns of unwanted behavior from the agents. Instead of manually correcting them every time, you can create permanent behavioral rules using the **🧑‍🏫 Instructor** agent.
+
+Activate it in the chat (`@workspace #InstructionMaker`) and use the `/create-rule` command. The Instructor will guide you through a collaborative process to:
+
+1.  **Diagnose** the problematic behavior.
+2.  **Define** a clear, unambiguous directive to correct it.
+3.  **Formalize** the directive into a `.instructions.md` file.
+
+These instruction files are automatically loaded by the agents, providing persistent, fine-grained control over their execution. This is the primary mechanism for evolving and improving the agent team's reliability.
+
+-----
+
+## Advanced Workflows
 
   * **Revising a Plan:** If the Implementer reports a failure, take its detailed error report back to the **Planner**. Use the `/revise-plan` command to collaboratively debug the issue and generate a corrected task file. The Implementer can then be given the new instructions using the `/reconcile-plan` command.
+  * **Creating a Permanent Rule:** If a problem is likely to recur, use the **Instructor** agent's `/create-rule` command to establish a permanent behavioral guideline that prevents the issue in the future.
   * **Saving Your Work:** At the end of a session with the Researcher or Planner, use the `/summarize-session` command. This creates a permanent, traceable summary of your work linked to issue trackers.
   * **Managing Long Conversations:** If a chat thread grows too long and agent performance degrades, use the `/thread-dump` command to generate a concise handoff briefing. You can then paste this into a new chat session to continue your work with a fresh context.
 
