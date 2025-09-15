@@ -1,9 +1,3 @@
-Got it. You want a simpler, more human-readable format that integrates the capabilities directly into the workflow description. I've removed the tree structure and combined the process and capabilities sections into a single, easy-to-follow guide.
-
-Here is the final revised `README.md`.
-
------
-
 # Layered Agent Workflow for VS Code Copilot
 
 This repository contains a structured, multi-agent workflow for software development using custom VS Code Copilot chat modes and reusable prompts. It establishes a clear, layered process that enhances agent performance through deliberate **Context Engineering**.
